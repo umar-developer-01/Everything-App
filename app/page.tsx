@@ -14,12 +14,12 @@ export default function Home() {
           <div className="text-2xl pt-10">Join Today.</div>
 
           <div className="py-5 flex flex-col items-start gap-3">
-            <button className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full flex items-center w-72 h-8">
+            <button className="signup-btn">
               <Image src={GoogleLogo} alt="Google" height={25} width={25} />
               Signup with Google
             </button>
 
-            <button className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full flex items-center w-72 h-8">
+            <button className="signup-btn">
               <Image src={AppleLogo} alt="Google" height={25} width={25} />
               Signup with Apple
             </button>
@@ -29,15 +29,15 @@ export default function Home() {
               <div className="text-sm">or</div>
               <div className="h-[0.1px] w-32 bg-white"></div>
             </div>
-            <button>Create Account</button>
-            <div>
-              By signing up, you agree to the Terms of Service and Privacy
-              Policy, including Cookie Use.
+            <button className="primary-btn">Create Account</button>
+            <div className="text-[11px] w-72 mt-2">
+              By signing up, you agree to the <span className="span-text">Terms of Service</span> and <span className="span-text">Privacy
+              Policy</span>, including <span className="span-text">Cookie Use</span>.
             </div>
           </div>
 
-          <div>Already have an account?</div>
-          <button>Signin</button>
+          <div className="mb-4">Already have an account?</div>
+          <button className="text-blue-500 bg-black text-sm border-[1px] font-thin px-16 py-1 rounded-full flex justify-center items-center w-72 h-8">Signin</button>
         </div>
       </div>
     </div>
