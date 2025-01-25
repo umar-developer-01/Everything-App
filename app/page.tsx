@@ -1,7 +1,10 @@
 import Image from "next/image";
+import CreateAccount from "../components/createAccount";
+import SigninAccount from "../components/signinAccount";
 import XLogo from "../public/xlogo.jpg";
 import GoogleLogo from "../public/google.png";
 import AppleLogo from "../public/apple.png";
+
 export default function Home() {
   return (
     <div className="h-screen w-screen bg-black flex flex-col">
@@ -30,7 +33,7 @@ export default function Home() {
                 <div className="text-sm">or</div>
                 <div className="h-[0.1px] w-32 bg-white"></div>
               </div>
-              <button className="primary-btn">Create Account</button>
+              <CreateAccount />
               <div className="text-[11px] w-72 mt-2">
                 By signing up, you agree to the{" "}
                 <span className="span-text">Terms of Service</span> and{" "}
@@ -40,9 +43,7 @@ export default function Home() {
             </div>
 
             <div className="mb-4">Already have an account?</div>
-            <button className="text-blue-500 bg-black text-sm border-[1px] font-thin px-16 py-1 rounded-full flex justify-center items-center w-72 h-8">
-              Signin
-            </button>
+            <SigninAccount />
           </div>
         </div>
       </div>
