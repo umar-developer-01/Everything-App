@@ -31,3 +31,7 @@ body {
 .span-text {
   @apply text-blue-500
 }
+
+.input-box {
+  @apply bg-black text-white p-2 border border-gray-500  focus:outline-none focus:border-blue-500
+}
