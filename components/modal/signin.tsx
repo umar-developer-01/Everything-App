@@ -10,10 +10,10 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const Signin = ({
   open,
-  setOpen,
+  // setOpen,
 }: {
   open: boolean;
-  setOpen: (value: boolean) => void;
+  // setOpen: (value: boolean) => void;
 }) => {
   const { handlePopup } = useTheme();
   const [enterInfo, setenterInfo] = useState<string>();
@@ -45,7 +45,7 @@ const Signin = ({
                 <div className="relative flex justify-center">
                   <XMarkIcon
                     className="text-white h-8 w-8 absolute top-2 left-2"
-                    onClick={() => setOpen(false)}
+                    onClick={() => handlePopup("")}
                   />
                   <div className="mt-2">
                     <Image src={XLogo} alt="XLogo" className="h-12 w-14" />

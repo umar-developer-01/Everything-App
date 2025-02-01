@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-
+import { useTheme } from "../context/index";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import XLogo from "../../public/xlogo.jpg";
 
@@ -10,11 +10,12 @@ import { useState, useEffect } from "react";
 
 const Signup = ({
   open,
-  setOpen,
+  // setOpen,
 }: {
   open: boolean;
-  setOpen: (value: boolean) => void;
+  // setOpen: (value: boolean) => void;
 }) => {
+  const { handlePopup } = useTheme();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -91,7 +92,7 @@ const Signup = ({
                 <div className="relative flex justify-center">
                   <XMarkIcon
                     className="text-white h-8 w-8 absolute top-2 left-2"
-                    onClick={() => setOpen(false)}
+                    onClick={() => handlePopup("")}
                   />
                   <div className="mt-2">
                     <Image src={XLogo} alt="XLogo" className="h-12 w-14" />

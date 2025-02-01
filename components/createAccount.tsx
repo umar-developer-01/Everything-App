@@ -1,17 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useTheme } from "./context/index";
 import SignupModal from "./modal/signup";
+
 const CreateAccount = () => {
-  const [open, setOpen] = useState(false);
-  const handleCreateAccount = () => {
-    setOpen(true);
-  };
+  const { popup, handlePopup } = useTheme();
+
   return (
     <>
-      <button className="primary-btn" onClick={handleCreateAccount}>
+      <button className="primary-btn" onClick={() => handlePopup("signup")}>
         Create Account
       </button>
-      {open && <SignupModal open={open} setOpen={setOpen} />}
+      {popup === "signup" && (
+        <SignupModal open={popup === "signup"} />
+      )}
     </>
   );
 };
