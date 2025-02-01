@@ -1,9 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import SigninModal from "./modal/signin";
+
 const SigninAccount = () => {
+  const [open, setOpen] = useState(false);
 
   const handleSigninAccount = () => {
-    console.log("I am here in Signin ");
+    setOpen(true);
   };
 
   return (
@@ -14,6 +18,7 @@ const SigninAccount = () => {
       >
         Signin
       </button>
+      {open && <SigninModal open={open} setOpen={setOpen} />}
     </>
   );
 };

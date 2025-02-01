@@ -5,7 +5,6 @@ const CreateAccount = () => {
   const [open, setOpen] = useState(false);
   const handleCreateAccount = () => {
     setOpen(true);
-    console.log("I am here ");
   };
   return (
     <>
