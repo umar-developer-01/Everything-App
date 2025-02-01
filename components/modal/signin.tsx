@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Dialog, DialogPanel } from "@headlessui/react";
+import { useTheme } from "../context/index";
 import { useState } from "react";
 import GoogleLogo from "../../public/google.png";
 import AppleLogo from "../../public/apple.png";
@@ -14,9 +15,10 @@ const Signin = ({
   open: boolean;
   setOpen: (value: boolean) => void;
 }) => {
-  const [enterInfo, setenterInfo] = useState();
+  const { handlePopup } = useTheme();
+  const [enterInfo, setenterInfo] = useState<string>();
 
-  const handleInfo = (e) => {
+  const handleInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setenterInfo(e.target.value);
   };
 
@@ -102,8 +104,12 @@ const Signin = ({
 
                     <div className="text-[14px] w-72 mt-8 text-white">
                       Don't have an account?{" "}
-                      <span className="span-text">Signup</span>
-                     
+                      <span
+                        className="span-text"
+                        onClick={() => handlePopup("signup")}
+                      >
+                        Signup
+                      </span>
                     </div>
                   </div>
                 </div>
