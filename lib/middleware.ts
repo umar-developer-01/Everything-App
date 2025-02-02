@@ -5,7 +5,7 @@ export default async function middleware(req: NextRequest) {
   const session = await auth(); // Get the authenticated user session
 
   if (!session?.user) {
-    return NextResponse.redirect(new URL("/login", req.url)); // Redirect if not authenticated
+    return NextResponse.redirect(new URL("/", req.url)); // Redirect if not authenticated
   }
 
   return NextResponse.next(); // Continue if authenticated
