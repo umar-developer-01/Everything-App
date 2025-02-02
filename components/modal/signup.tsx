@@ -1,17 +1,15 @@
 "use client";
-import Image from "next/image";
-import { useTheme } from "../context/index";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import XLogo from "../../public/xlogo.jpg";
-
-import { XMarkIcon } from "@heroicons/react/24/outline";
-
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useTheme } from "@/components/context/index";
+import { Dialog, DialogPanel } from "@headlessui/react";
+import XLogo from "@/public/xlogo.jpg";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const Signup = ({
   open,
-  // setOpen,
-}: {
+}: // setOpen,
+{
   open: boolean;
   // setOpen: (value: boolean) => void;
 }) => {
@@ -55,6 +53,20 @@ const Signup = ({
 
     const days = new Date(Number(year), monthIndex + 1, 0).getDate(); // Get the last day of the month
     return Array.from({ length: days }, (_, i) => i + 1); // Create an array of days
+  };
+
+  const handleSubmit = async () => {
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password: "1234444", name }),
+    });
+    console.log("this is the response", response);
+    if (response.ok) {
+      alert("Signup successful!");
+    } else {
+      alert("Signup failed");
+    }
   };
 
   // Update days in the month whenever selectedMonth or selectedYear changes
@@ -192,7 +204,10 @@ const Signup = ({
                   </div>
                 </div>
                 <div className="mt-10 flex justify-center">
-                  <button className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 ">
+                  <button
+                    className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 "
+                    onClick={handleSubmit}
+                  >
                     Next
                   </button>
                 </div>

@@ -1,25 +1,53 @@
 "use client";
 import Image from "next/image";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { useTheme } from "../context/index";
+import { signIn } from "next-auth/react";
+import { useTheme } from "@/components/context/index";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import GoogleLogo from "../../public/google.png";
-import AppleLogo from "../../public/apple.png";
-import XLogo from "../../public/xlogo.jpg";
+import GoogleLogo from "@/public/google.png";
+import AppleLogo from "@/public/apple.png";
+import XLogo from "@/public/xlogo.jpg";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const Signin = ({
   open,
-  // setOpen,
-}: {
+}: // setOpen,
+{
   open: boolean;
   // setOpen: (value: boolean) => void;
 }) => {
   const { handlePopup } = useTheme();
   const [enterInfo, setenterInfo] = useState<string>();
+  const [password, setpassword] = useState<string>("1234444");
+  const [error, setError] = useState<string>("");
+  const router = useRouter();
 
   const handleInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setenterInfo(e.target.value);
+    setenterInfo(e.target.value || "");
+  };
+
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setpassword(e.target.value || "");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: enterInfo,
+      password,
+    });
+
+    console.log("this is the response", result);
+
+    if (result?.error) {
+      alert(result.error);
+    } else {
+      alert("Signin successful!");
+      router.push("/dashboard");
+    }
   };
 
   return (
@@ -54,53 +82,65 @@ const Signin = ({
                 <div className="flex justify-center">
                   <div className="flex flex-col mt-4 px-16">
                     <div className="text-white text-2xl">Sign in to X</div>
+                    <form onSubmit={handleSubmit}>
+                      <div className="mt-8">
+                        <button className="signup-btn">
+                          <Image
+                            src={GoogleLogo}
+                            alt="Google"
+                            height={25}
+                            width={25}
+                          />
+                          Signup with Google
+                        </button>
 
-                    <div className="mt-8">
-                      <button className="signup-btn">
-                        <Image
-                          src={GoogleLogo}
-                          alt="Google"
-                          height={25}
-                          width={25}
-                        />
-                        Signup with Google
-                      </button>
+                        <button className="signup-btn mt-4">
+                          <Image
+                            src={AppleLogo}
+                            alt="Google"
+                            height={25}
+                            width={25}
+                          />
+                          Signup with Apple
+                        </button>
 
-                      <button className="signup-btn mt-4">
-                        <Image
-                          src={AppleLogo}
-                          alt="Google"
-                          height={25}
-                          width={25}
-                        />
-                        Signup with Apple
-                      </button>
+                        <div className="mx-4 w-64 flex items-center gap-2 mt-2">
+                          <div className="h-[0.1px] w-32 bg-white"></div>
+                          <div className="text-sm text-white">or</div>
+                          <div className="h-[0.1px] w-32 bg-white"></div>
+                        </div>
 
-                      <div className="mx-4 w-64 flex items-center gap-2 mt-2">
-                        <div className="h-[0.1px] w-32 bg-white"></div>
-                        <div className="text-sm text-white">or</div>
-                        <div className="h-[0.1px] w-32 bg-white"></div>
+                        <div className="flex flex-col gap-6 mt-4">
+                          <input
+                            value={enterInfo}
+                            type="email"
+                            onChange={handleInfo}
+                            placeholder="Phone, email, or username"
+                            className="input-box"
+                          />
+                          <input
+                            value={password}
+                            type="password"
+                            onChange={handlePassword}
+                            placeholder="Password"
+                            className="input-box"
+                          />
+                        </div>
                       </div>
 
-                      <div className="flex flex-col gap-6 mt-4">
-                        <input
-                          value={enterInfo}
-                          onChange={handleInfo}
-                          placeholder="Phone, email, or username"
-                          className="input-box"
-                        />
+                      <div className="mt-8 flex flex-col  justify-center">
+                        <button
+                          type="submit"
+                          className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 "
+                        >
+                          Next
+                        </button>
+
+                        <button className="bg-black text-white border border-white text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 mt-4 ">
+                          Forgot Password?
+                        </button>
                       </div>
-                    </div>
-
-                    <div className="mt-8 flex flex-col  justify-center">
-                      <button className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 ">
-                        Next
-                      </button>
-
-                      <button className="bg-black text-white border border-white text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 mt-4 ">
-                        Forgot Password?
-                      </button>
-                    </div>
+                    </form>
 
                     <div className="text-[14px] w-72 mt-8 text-white">
                       Don't have an account?{" "}
@@ -112,6 +152,7 @@ const Signin = ({
                       </span>
                     </div>
                   </div>
+                  {error && <p className="text-red-500">{error}</p>}
                 </div>
               </div>
             </DialogPanel>
