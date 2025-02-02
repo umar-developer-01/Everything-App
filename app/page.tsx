@@ -1,11 +1,19 @@
 import Image from "next/image";
+import { auth } from "@/lib/auth";
 import CreateAccount from "@/components/createAccount";
 import SigninAccount from "@/components/signinAccount";
 import XLogo from "@/public/xlogo.jpg";
+import { redirect } from "next/navigation";
 import GoogleLogo from "@/public/google.png";
 import AppleLogo from "@/public/apple.png";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth(); // Get the authenticated user session
+
+  if (session) {
+    redirect("/dashboard"); // ✅ Server-side redirect if not authenticated
+  }
+
   return (
     <div className="h-screen w-screen bg-black flex flex-col">
       <div className="flex-1 flex gap-4">
@@ -69,4 +77,3 @@ export default function Home() {
     </div>
   );
 }
-
