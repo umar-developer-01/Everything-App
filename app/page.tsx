@@ -1,9 +1,9 @@
 import Image from "next/image";
-import CreateAccount from "../components/createAccount";
-import SigninAccount from "../components/signinAccount";
-import XLogo from "../public/xlogo.jpg";
-import GoogleLogo from "../public/google.png";
-import AppleLogo from "../public/apple.png";
+import CreateAccount from "@/components/createAccount";
+import SigninAccount from "@/components/signinAccount";
+import XLogo from "@/public/xlogo.jpg";
+import GoogleLogo from "@/public/google.png";
+import AppleLogo from "@/public/apple.png";
 
 export default function Home() {
   return (

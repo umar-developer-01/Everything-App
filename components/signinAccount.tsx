@@ -1,6 +1,6 @@
 "use client";
-import { useTheme } from "./context/index";
-import SigninModal from "./modal/signin";
+import { useTheme } from "@/components/context/index";
+import SigninModal from "@/components/modal/signin";
 
 const SigninAccount = () => {
   const { popup, handlePopup } = useTheme();

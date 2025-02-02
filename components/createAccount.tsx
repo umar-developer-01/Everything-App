@@ -1,6 +1,6 @@
 "use client";
-import { useTheme } from "./context/index";
-import SignupModal from "./modal/signup";
+import { useTheme } from "@/components/context/index";
+import SignupModal from "@/components/modal/signup";
 
 const CreateAccount = () => {
   const { popup, handlePopup } = useTheme();
