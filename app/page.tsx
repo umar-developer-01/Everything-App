@@ -70,11 +70,3 @@ export default function Home() {
   );
 }
 
-// <div className="flex-1 h-full w-full">
-// <Image
-//   src={XLogo}
-//   alt="Picture of the author"
-//   layout="responsive" /* Ensures the image scales properly */
-//   objectFit="contain" /* Adjusts how the image fits inside its container */
-// />
-// </div>

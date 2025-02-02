@@ -12,10 +12,9 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const Signin = ({
   open,
-}: // setOpen,
+}: 
 {
   open: boolean;
-  // setOpen: (value: boolean) => void;
 }) => {
   const { handlePopup } = useTheme();
   const [enterInfo, setenterInfo] = useState<string>();
