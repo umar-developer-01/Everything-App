@@ -1,16 +1,21 @@
-import { auth } from "@/lib/auth";
+import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function middleware(req: NextRequest) {
-  const session = await auth(); // Get the authenticated user session
+export async function middleware(req: NextRequest) {
+  // Extract token from cookies
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  if (!session?.user) {
-    return NextResponse.redirect(new URL("/login", req.url)); // Redirect if not authenticated
+  console.log("🔍 Debug: Token in middleware →", token);
+
+  // If no token, redirect to home page
+  if (!token) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  return NextResponse.next(); // Continue if authenticated
+  return NextResponse.next(); // Continue to the protected page
 }
 
+// Apply middleware to specific routes
 export const config = {
-  matcher: ["/dashboard"], // Protect this route
+  matcher: ["/dashboard"], // Protect the dashboard route
 };
