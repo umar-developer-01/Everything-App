@@ -16,6 +16,7 @@ const Signup = ({ open }: { open: boolean }) => {
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setshowPassword] = useState<boolean>(false);
   const [password, setpassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [selectedDay, setSelectedDay] = useState<string>("");
   const [selectedMonth, setSelectedMonth] = useState<string>("");
@@ -60,11 +61,13 @@ const Signup = ({ open }: { open: boolean }) => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const response = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, name }),
     });
+
     if (response.ok) {
       // ✅ Sign in the user immediately after successful signup
       await signIn("credentials", {
@@ -72,9 +75,9 @@ const Signup = ({ open }: { open: boolean }) => {
         password: password,
         redirect: false, // Prevents full-page reload
       });
-
       router.push("/dashboard"); // Redirect to dashboard after login
     } else {
+      setLoading(false);
       setError("Signup failed");
     }
   };
@@ -268,8 +271,9 @@ const Signup = ({ open }: { open: boolean }) => {
                   <button
                     className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 "
                     onClick={handleSubmit}
+                    disabled={loading}
                   >
-                    Next
+                    {loading ? "Loading" : "Next"}
                   </button>
                 </div>
               </div>
