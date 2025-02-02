@@ -43,10 +43,10 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      // When user logs in, attach user data to the token
-      return token;
-    },
+    // async jwt({ token, user }) {
+    //   // When user logs in, attach user data to the token
+    //   return token;
+    // },
     async session({ session, token }) {
       if (token?.sub) {
         session.user.id = token.sub;
@@ -56,9 +56,6 @@ export const authOptions = {
   },
   session: {
     strategy: "jwt", // Using JWT-based session
-  },
-  pages: {
-    signIn: "/login", // Custom login page
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
