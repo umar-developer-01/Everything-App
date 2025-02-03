@@ -16,3 +16,22 @@ export const formatDate = (payload: FormatDate) => {
 
   return `${selectedYear}-${formattedMonth}-${formattedDay}`;
 };
+
+export const validateDate = (dateString: string) => {
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+
+  if (!regex.test(dateString)) {
+    return {
+      valid: false,
+      dateObj: null,
+      message: "Invalid date format. Use YYYY-MM-DD.",
+    };
+  }
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return { valid: false, dateObj: null, message: "Invalid date value." };
+  }
+
+  return { valid: true, dateObj: date, message: "Success" };
+};

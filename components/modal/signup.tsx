@@ -7,10 +7,11 @@ import { useTheme } from "@/components/context/index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/lib/validations/index";
+
 import { Dialog, DialogPanel } from "@headlessui/react";
 import XLogo from "@/public/xlogo.jpg";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { formatDate } from "@/lib/functions/date";
+import { formatDate, validateDate } from "@/lib/functions/date";
 
 interface User {
   name: string;
@@ -25,8 +26,6 @@ const Signup = ({ open }: { open: boolean }) => {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(signupSchema),
@@ -37,9 +36,9 @@ const Signup = ({ open }: { open: boolean }) => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [selectedDay, setSelectedDay] = useState<number | undefined>();
+  const [selectedDay, setSelectedDay] = useState<string | undefined>();
   const [selectedMonth, setSelectedMonth] = useState<string>("");
-  const [selectedYear, setSelectedYear] = useState<number | undefined>();
+  const [selectedYear, setSelectedYear] = useState<string | undefined>();
   const [dateError, setdateError] = useState<string | null>("");
 
   const [daysInMonth, setDaysInMonth] = useState<number[]>([]); // Store the list of days
@@ -71,6 +70,8 @@ const Signup = ({ open }: { open: boolean }) => {
   const onSubmit = async (data: User) => {
     setLoading(true);
     setError(null);
+    setdateError(null);
+
     const payload = {
       selectedDay,
       selectedMonth,
@@ -79,12 +80,18 @@ const Signup = ({ open }: { open: boolean }) => {
 
     const date = formatDate(payload);
 
+    const { valid, dateObj, message } = validateDate(date);
+    if (!valid) {
+      setLoading(false);
+      setdateError(message);
+      return;
+    }
     const response = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, date }),
+      body: JSON.stringify({ ...data, date: dateObj }),
     });
-    console.log("this is the response", response);
+
     if (response.ok) {
       // ✅ Sign in the user immediately after successful signup
       await signIn("credentials", {
