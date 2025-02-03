@@ -16,6 +16,7 @@ model User {
   image         String?
   posts         Posts[]
   followers     Followers[]
+  date          DateTime? 
 }
 
 model Posts {
