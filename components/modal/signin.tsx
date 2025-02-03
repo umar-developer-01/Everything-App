@@ -17,6 +17,7 @@ const Signin = ({ open }: { open: boolean }) => {
   const [password, setpassword] = useState<string>("");
   const [showPassword, setshowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setenterInfo(e.target.value || "");
@@ -28,11 +29,13 @@ const Signin = ({ open }: { open: boolean }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const result = await signIn("credentials", {
       redirect: false,
       email: enterInfo,
       password,
     });
+    setLoading(false);
     if (result?.error) {
       setError(result?.error || "Error in Signin");
     } else {
@@ -165,9 +168,10 @@ const Signin = ({ open }: { open: boolean }) => {
                       <div className="mt-8 flex flex-col  justify-center">
                         <button
                           type="submit"
-                          className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 "
+                          className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8"
+                          disabled={loading}
                         >
-                          Next
+                          {loading ? "Loading" : "Next"}
                         </button>
 
                         <button className="bg-black text-white border border-white text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 mt-4 ">
@@ -177,7 +181,7 @@ const Signin = ({ open }: { open: boolean }) => {
                     </form>
 
                     <div className="text-[14px] w-72 mt-8 text-white">
-                      Don't have an account?{" "}
+                      Don&apos;t have an account?{" "}
                       <span
                         className="span-text"
                         onClick={() => handlePopup("signup")}
