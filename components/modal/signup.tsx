@@ -81,6 +81,7 @@ const Signup = ({ open }: { open: boolean }) => {
     const date = formatDate(payload);
 
     const { valid, dateObj, message } = validateDate(date);
+    
     if (!valid) {
       setLoading(false);
       setdateError(message);
