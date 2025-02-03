@@ -24,7 +24,7 @@ export const validateDate = (dateString: string) => {
     return {
       valid: false,
       dateObj: null,
-      message: "Invalid date format. Use YYYY-MM-DD.",
+      message: "Invalid date format.",
     };
   }
 
