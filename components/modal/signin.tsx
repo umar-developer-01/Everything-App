@@ -9,31 +9,37 @@ import GoogleLogo from "@/public/google.png";
 import AppleLogo from "@/public/apple.png";
 import XLogo from "@/public/xlogo.jpg";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signinSchema } from "@/lib/validations/index";
+
+interface User {
+  email: string;
+  password: string;
+}
 
 const Signin = ({ open }: { open: boolean }) => {
   const router = useRouter();
   const { handlePopup } = useTheme();
-  const [enterInfo, setenterInfo] = useState<string>("");
-  const [password, setpassword] = useState<string>("");
+
   const [showPassword, setshowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setenterInfo(e.target.value || "");
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signinSchema),
+  });
 
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setpassword(e.target.value || "");
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (values: User) => {
     setLoading(true);
     const result = await signIn("credentials", {
       redirect: false,
-      email: enterInfo,
-      password,
+      email: values.email,
+      password: values.password,
     });
     setLoading(false);
     if (result?.error) {
@@ -75,7 +81,7 @@ const Signin = ({ open }: { open: boolean }) => {
                 <div className="flex justify-center">
                   <div className="flex flex-col mt-4 px-16">
                     <div className="text-white text-2xl">Sign in to X</div>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="mt-8">
                         <button className="signup-btn">
                           <Image
@@ -104,17 +110,22 @@ const Signin = ({ open }: { open: boolean }) => {
                         </div>
 
                         <div className="flex flex-col gap-6 mt-4">
-                          <input
-                            value={enterInfo}
-                            type="email"
-                            onChange={handleInfo}
-                            placeholder="Phone, email, or username"
-                            className="input-box"
-                          />
+                          <div>
+                            <input
+                              {...register("email")}
+                              type="email"
+                              placeholder="Phone, email, or username"
+                              className="input-box w-full"
+                            />
+                            {errors?.email && (
+                              <p className="text-red-500 mt-2">
+                                {errors?.email?.message}
+                              </p>
+                            )}
+                          </div>
                           <div className="relative">
                             <input
-                              value={password}
-                              onChange={handlePassword}
+                              {...register("password")}
                               placeholder="Password"
                               type={showPassword ? "text" : "password"}
                               className="input-box w-full"
@@ -160,7 +171,13 @@ const Signin = ({ open }: { open: boolean }) => {
                                 />
                               </svg>
                             )}
+                        
                           </div>
+                          {errors?.password && (
+                              <p className="text-red-500 -mt-4">
+                                {errors?.password?.message}
+                              </p>
+                            )}
                         </div>
                         {error && <p className="text-red-500 mt-4">{error}</p>}
                       </div>
