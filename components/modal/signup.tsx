@@ -188,11 +188,7 @@ const Signup = ({ open }: { open: boolean }) => {
                           type={showPassword ? "text" : "password"}
                           className="input-box w-full"
                         />
-                        {errors?.password && (
-                          <p className="text-red-500 mt-2">
-                            {errors?.password?.message}
-                          </p>
-                        )}
+                     
 
                         {showPassword && (
                           <svg
@@ -235,6 +231,11 @@ const Signup = ({ open }: { open: boolean }) => {
                           </svg>
                         )}
                       </div>
+                      {errors?.password && (
+                          <p className="text-red-500 -mt-4">
+                            {errors?.password?.message}
+                          </p>
+                        )}
                     </div>
 
                     <div className="mt-6">
