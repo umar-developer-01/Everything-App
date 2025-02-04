@@ -5,7 +5,7 @@ const LeftSidebar = () => {
   return (
     <>
       <div className="flex flex-col text-white ">
-        <div className="flex flex-col gap-4 ml-6 mr-4">
+        <div className="flex flex-col gap-4 ml-6 mr-4 ">
           <div className="mt-2 mb-2">
             <Image src={XLogo} alt="XLogo" className="h-10 w-10 self-start" />
           </div>
@@ -216,7 +216,7 @@ const LeftSidebar = () => {
           </button>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-20  ml-2 mr-2 cursor-pointer hover:bg-gray-800 p-2 hover:rounded-full">
             <div>
                Profile
             </div>
