@@ -29,9 +29,13 @@ body {
 }
 
 .span-text {
-  @apply text-blue-500
+  @apply text-blue-500;
 }
 
 .input-box {
-  @apply bg-black text-white p-2 border border-gray-500  focus:outline-none focus:border-blue-500
+  @apply bg-black text-white p-2 border border-gray-500  focus:outline-none focus:border-blue-500;
+}
+
+.secondary-btn {
+  @apply bg-white text-black text-sm font-thin px-16 py-1 rounded-full w-72 h-8;
 }

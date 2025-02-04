@@ -4,8 +4,8 @@ import XLogo from "@/public/xlogo.jpg";
 const LeftSidebar = () => {
   return (
     <>
-      <div className="flex justify-center items-start text-white">
-        <div className="flex flex-col gap-4">
+      <div className="flex flex-col text-white ">
+        <div className="flex flex-col gap-4 ml-6 mr-4">
           <div className="mt-2 mb-2">
             <Image src={XLogo} alt="XLogo" className="h-10 w-10 self-start" />
           </div>
@@ -209,6 +209,25 @@ const LeftSidebar = () => {
 
             <span className="font-semibold">More</span>
           </div>
+        </div>
+        <div className="mt-6 ml-4 mr-4">
+          <button className="secondary-btn !w-full flex items-center justify-center">
+            Post
+          </button>
+        </div>
+
+        <div className="flex gap-2">
+            <div>
+               Profile
+            </div>
+
+            <div className="flex flex-col justify-between ">
+              <div>Umar</div> 
+              <div>dev_umar</div>
+            </div>
+            <div>
+               Three dots
+            </div>
         </div>
       </div>
     </>
