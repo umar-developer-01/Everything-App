@@ -185,7 +185,7 @@ const Signin = ({ open }: { open: boolean }) => {
                       <div className="mt-8 flex flex-col  justify-center">
                         <button
                           type="submit"
-                          className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8"
+                          className="secondary-btn"
                           disabled={loading}
                         >
                           {loading ? "Loading" : "Next"}

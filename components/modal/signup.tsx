@@ -81,7 +81,7 @@ const Signup = ({ open }: { open: boolean }) => {
     const date = formatDate(payload);
 
     const { valid, dateObj, message } = validateDate(date);
-    
+
     if (!valid) {
       setLoading(false);
       setdateError(message);
@@ -188,7 +188,6 @@ const Signup = ({ open }: { open: boolean }) => {
                           type={showPassword ? "text" : "password"}
                           className="input-box w-full"
                         />
-                     
 
                         {showPassword && (
                           <svg
@@ -232,10 +231,10 @@ const Signup = ({ open }: { open: boolean }) => {
                         )}
                       </div>
                       {errors?.password && (
-                          <p className="text-red-500 -mt-4">
-                            {errors?.password?.message}
-                          </p>
-                        )}
+                        <p className="text-red-500 -mt-4">
+                          {errors?.password?.message}
+                        </p>
+                      )}
                     </div>
 
                     <div className="mt-6">
@@ -318,10 +317,7 @@ const Signup = ({ open }: { open: boolean }) => {
                   </div>
 
                   <div className="mt-10 flex justify-center">
-                    <button
-                      className="bg-white text-black text-sm font-thin px-16 py-1 rounded-full  w-72 h-8 "
-                      disabled={loading}
-                    >
+                    <button className="secondary-btn" disabled={loading}>
                       {loading ? "Loading" : "Next"}
                     </button>
                   </div>
