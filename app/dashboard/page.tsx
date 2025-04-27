@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Logout from "@/components/logout";
 import LeftSidebar from "@/components/sidebars/leftSidebar";
+import Main from "@/components/main/page";
 
 export default async function Dashboard() {
   const session = await auth(); // Get the authenticated user session
@@ -19,14 +20,16 @@ export default async function Dashboard() {
           Welcome, <strong>{session?.user?.name || "User"}</strong>{" "}
         </p>
         <p>Email: {session?.user?.email}</p> */}
-        {/* <Logout /> */}
+      {/* <Logout /> */}
       {/* </div> */}
       <div className="h-screen w-screen bg-black">
         <div className="h-full w-full grid grid-cols-10 sm:px-[20px] md:px-[100px] lg:px-[200px]">
-          <div className="col-span-2  bg-black border-r border-white-800">
+          <div className="col-span-2 bg-black border-r border-gray-500">
             <LeftSidebar />
           </div>
-          <div className="col-span-5  bg-blue-300">B</div>
+          <div className="col-span-5">
+            <Main/>
+          </div>
           <div className="col-span-3 bg-green-300">C</div>
         </div>
       </div>
