@@ -1,13 +1,22 @@
-
-
 const MainContent = () => {
   return (
     <div className="flex flex-col text-white">
-      <div className="flex cursor-pointer">
-         <div className="basis-1/3 flex justify-center items-center hover:bg-gray-800 p-3">For you</div>
-         <div className="basis-1/3 flex justify-center items-center hover:bg-gray-800 p-3">Following</div>
-         <div className="basis-1/3 flex justify-center items-center hover:bg-gray-800 p-3">React</div>
+      <div className="flex cursor-pointer border-b border-gray-500">
+        <div className="basis-1/3 flex flex-col items-center justify-center hover:bg-gray-800 p-3 relative">
+          <div>For you</div>
+          <div className="bg-blue-500 w-14 h-1 absolute bottom-0 rounded-md"></div>
+        </div>
+        <div className="basis-1/3 flex flex-col justify-center items-center hover:bg-gray-800 p-3 relative">
+          <div>Following</div>
+          <div className="bg-blue-500 w-20 h-1 absolute bottom-0 rounded-md"></div>
+        </div>
+        <div className="basis-1/3 flex flex-col justify-center items-center hover:bg-gray-800 p-3 relative">
+          <div>React</div>
+          <div className="bg-blue-500 w-14 h-1 absolute bottom-0 rounded-md"></div>
+        </div>
       </div>
+
+
       <div>
 
       </div>
