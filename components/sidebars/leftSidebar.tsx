@@ -225,9 +225,9 @@ const LeftSidebar = () => {
           
                 <Image src={ProfileImage} alt="Profile" className="h-12 w-12 rounded-full mt-2 ml-2" />
       
-              <div className="flex flex-col">
+              <div className="flex flex-col justify-center text-sm">
                 <div>dilaray</div>
-                <div>@dev_dilaray</div>
+                <div mt-1>@dev_dilaray</div>
               </div>
             </div>
             <div>
