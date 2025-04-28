@@ -227,7 +227,7 @@ const LeftSidebar = () => {
       
               <div className="flex flex-col justify-center text-sm">
                 <div>dilaray</div>
-                <div mt-1>@dev_dilaray</div>
+                <div>@dev_dilaray</div>
               </div>
             </div>
             <div>
