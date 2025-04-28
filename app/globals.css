@@ -39,3 +39,8 @@ body {
 .secondary-btn {
   @apply bg-white text-black text-sm font-thin px-16 py-1 rounded-full w-72 h-8;
 }
+
+
+.third-btn {
+  @apply bg-white text-black text-sm font-thin rounded-full ;
+}

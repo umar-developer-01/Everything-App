@@ -11,6 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        twitter: "rgb(29, 155, 240)",
       },
     },
   },
