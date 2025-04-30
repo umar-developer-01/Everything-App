@@ -1,13 +1,49 @@
+"use client"
 import ProfileImage from "@/public/profile.png";
 import Image from "next/image";
+import { useState } from "react";
 const Body = () => {
+
+  const [isClickedHappening, setIsClickedHappening] = useState(false);
   return (
     <div className="flex flex-col">
       <div className="border-b border-gray-500 flex flex-col p-4">
 
         <div className="flex items-center">
           <Image src={ProfileImage} alt="Profile" className="h-12 w-12 rounded-full mr-4" />
-          <p className="text-gray-500 text-xl my-2">What's happening?</p>
+          <div className="w-full">
+            {isClickedHappening && <div className="mb-2 flex items-center gap-1 text-twitter text-sm px-4 py-0.5 border border-gray-500 rounded-full w-28">
+              <p>Everyone</p>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgb(29, 155, 240)" className="h-4 w-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>}
+
+
+            <textarea
+              placeholder="What's happening?"
+              className="w-full bg-black placeholder:text-xl text-lg placeholder:text-gray-500 outline-none min-h-[50px] max-h-[200px] text-white overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"
+              rows={1}
+              onFocus={() => setIsClickedHappening(true)}
+              onInput={(e) => {
+                const textarea = e.target as HTMLTextAreaElement;
+                textarea.style.height = 'auto';
+                textarea.style.height = textarea.scrollHeight + 'px';
+              }}
+            />
+
+
+            {isClickedHappening && <div className="border-b border-gray-500 w-full text-sm text-twitter pb-2 pt-1 flex items-center gap-1 pl-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-4 w-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+              </svg>
+
+              <div>
+                Everyone can reply
+              </div>
+            </div>}
+
+          </div>
         </div>
 
         <div className="mt-2 pl-16 flex justify-between items-center">
@@ -44,10 +80,17 @@ const Body = () => {
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
             </svg>
           </div>
+          <div className="flex gap-8 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgb(29, 155, 240)" className="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m20.893 13.393-1.135-1.135a2.252 2.252 0 0 1-.421-.585l-1.08-2.16a.414.414 0 0 0-.663-.107.827.827 0 0 1-.812.21l-1.273-.363a.89.89 0 0 0-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.212.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 0 1-1.81 1.025 1.055 1.055 0 0 1-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.655-.261a2.25 2.25 0 0 1-1.383-2.46l.007-.042a2.25 2.25 0 0 1 .29-.787l.09-.15a2.25 2.25 0 0 1 2.37-1.048l1.178.236a1.125 1.125 0 0 0 1.302-.795l.208-.73a1.125 1.125 0 0 0-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 0 1-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 0 1-1.458-1.137l1.411-2.353a2.25 2.25 0 0 0 .286-.76m11.928 9.869A9 9 0 0 0 8.965 3.525m11.928 9.868A9 9 0 1 1 8.965 3.525" />
+            </svg>
 
-          <button className="third-btn flex items-center justify-center py-1.5 px-5">
-            Post
-          </button>
+
+
+            <button className="third-btn flex items-center justify-center py-1.5 px-5">
+              Post
+            </button>
+          </div>
 
         </div>
       </div>
