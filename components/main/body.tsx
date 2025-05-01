@@ -107,7 +107,7 @@ const Body = () => {
 
           <div className="flex justify-between w-full text-sm">
             <div className="flex flex-col">
-              <div className="flex gap-1">
+              <div className="flex gap-1 items-center">
                 <p>Bruce Wayne</p>
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="rgb(29, 155, 240)" className="h-5 w-5">
@@ -115,7 +115,7 @@ const Body = () => {
                 </svg>
 
                 <p className="text-gray-500">@batman</p>
-                <div className="text-gray-500">.</div>
+                <div className="text-gray-500 h-[2px] w-[2px] rounded-full bg-gray-500"></div>
                 <div className="text-gray-500">9h</div>
               </div>
               <div className="">
