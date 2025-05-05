@@ -32,7 +32,7 @@ const RightSidebar = () => {
                     <p className="text-sm text-white mt-2 pl-2">Subscribe to unlock new features and if eligible, receive a share of revenue.</p>
                     <button className="text-white text-sm font-thin px-16 py-1 rounded-full w-12 bg-twitter flex justify-center items-center mt-2 ml-2">Subscribe</button>
                 </div>
-                <div className="w-80 h-[430px] border border-gray-500 rounded-[13px] flex flex-col py-2 px-4 text-white mt-6">
+                <div className="w-80 h-[440px] border border-gray-500 rounded-[13px] flex flex-col py-2 px-4 text-white mt-6">
                     <div className="text-xl font-bold">Whats's happening</div>
                     <div className="flex gap-3 mt-4">
                         <Image src={Image4} alt="Image4" className="w-20 h-20 rounded-md object-cover" />
@@ -42,9 +42,9 @@ const RightSidebar = () => {
                         </div>
                     </div>
                     <div className="flex flex-col gap-3 mt-4">
-                        <TrendingTopic />
-                        <TrendingTopic />
-                        <TrendingTopic />
+                        <TrendingTopic name={"Lanchire"} posts={43} />
+                        <TrendingTopic name={"React"} posts={81} />
+                        <TrendingTopic name={"EU"} posts={98} />
                     </div>
                     <div className="text-twitter text-md mt-5">
                         Show More
@@ -62,13 +62,13 @@ const RightSidebar = () => {
 export default RightSidebar;
 
 
-const TrendingTopic = () => {
+const TrendingTopic = ({ name, posts }: { name: string, posts: number }) => {
     return (
         <div className="flex justify-between">
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
                 <div className="text-gray-500 text-[12px]">Trending Topic</div>
-                <div className="text-white text-md">Lanchire</div>
-                <div className="text-gray-500 text-[12px]">43K posts</div>
+                <div className="text-white text-md">{name}</div>
+                <div className="text-gray-500 text-[12px]">{posts}K posts</div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-5 w-5 mt-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
