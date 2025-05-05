@@ -24,12 +24,12 @@ export default async function Dashboard() {
           </div>
 
           {/* Main Content - Scrollable */}
-          <div className="col-span-5 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+          <div className="col-span-5 border-r border-gray-500 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
             <Main />
           </div>
 
           {/* Right Section - Fixed */}
-          <div className="col-span-3 bg-green-300 overflow-hidden">
+          <div className="col-span-3 bg-black overflow-hidden border-r border-gray-500">
             <RightSidebar />
           </div>
 
