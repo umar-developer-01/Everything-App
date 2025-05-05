@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Logout from "@/components/logout";
+import RightSidebar from "@/components/sidebars/rightSidebar";
 import LeftSidebar from "@/components/sidebars/leftSidebar";
 import Main from "@/components/main/page";
 
@@ -13,26 +14,28 @@ export default async function Dashboard() {
 
   return (
     <>
-      {/* <div className="max-w-2xl mx-auto mt-10">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
 
-        <p className="mt-4">
-          Welcome, <strong>{session?.user?.name || "User"}</strong>{" "}
-        </p>
-        <p>Email: {session?.user?.email}</p> */}
-      {/* <Logout /> */}
-      {/* </div> */}
-      <div className="h-screen w-screen bg-black">
+      <div className="h-screen w-screen bg-black overflow-hidden">
         <div className="h-full w-full grid grid-cols-10 sm:px-[20px] md:px-[100px] lg:px-[200px]">
-          <div className="col-span-2 bg-black border-r border-gray-500">
+
+          {/* Left Sidebar - Fixed */}
+          <div className="col-span-2 bg-black border-r border-gray-500 overflow-hidden">
             <LeftSidebar />
           </div>
-          <div className="col-span-5">
-            <Main/>
+
+          {/* Main Content - Scrollable */}
+          <div className="col-span-5 overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+            <Main />
           </div>
-          <div className="col-span-3 bg-green-300">C</div>
+
+          {/* Right Section - Fixed */}
+          <div className="col-span-3 bg-green-300 overflow-hidden">
+            <RightSidebar />
+          </div>
+
         </div>
       </div>
+
     </>
   );
 }
