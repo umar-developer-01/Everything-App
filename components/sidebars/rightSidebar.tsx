@@ -36,20 +36,20 @@ const RightSidebar = () => {
             </div>
 
             <Popup isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <div className="w-full text-white">
-                    <div className="flex justify-between">
-                        <div className="flex gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-
-                            <p>Rock</p>
+                <div className="w-full text-white flex flex-col">
+                    <div className="flex justify-between px-4">
+                        <div className="text-xl">
+                            Recent
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-
+                        <div className="text-twitter">
+                            Clear all
+                        </div>
                     </div>
+                    <OptionInPopup name={"Rock"} />
+                    <OptionInPopup name={"Greenland"} />
+                    <OptionInPopup name={"X"} />
+                    <OptionInPopup name={"Met Gala"} />
+                    <OptionInPopup name={"Virat Kohli"} />
                 </div>
             </Popup>
 
@@ -103,5 +103,26 @@ const TrendingTopic = ({ name, posts }: { name: string, posts: number }) => {
 
 
         </div>
+    )
+}
+
+
+const OptionInPopup = ({ name }: { name: String }) => {
+    return (
+        <>
+            <div className="flex justify-between py-4 px-4 hover:bg-gray-800 hover:cursor-pointer">
+                <div className="flex gap-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+
+                    <p>{name}</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-5 w-5 text-twitter">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+
+            </div>
+        </>
     )
 }
