@@ -1,14 +1,23 @@
+'use client';
+import { useState } from "react";
 import Image from "next/image";
 import Image4 from "@/public/gala.jpg";
+import Popup from "@/components/sidebars/popup"
 
 const RightSidebar = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true)
+    }
     return (
         <div className="flex flex-col gap-2 items-center">
-            <div className="relative mt-2">
+            <div className="relative mt-2" onClick={handleModalOpen}>
                 <input
                     type="text"
                     placeholder="Search"
                     className="w-80 p-2 pl-8 rounded-full bg-black text-white border border-gray-500 outline-none text-sm placeholder:text-white focus:ring-2 focus:ring-twitter"
+
                 />
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +34,24 @@ const RightSidebar = () => {
                     />
                 </svg>
             </div>
+
+            <Popup isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <div className="w-full text-white">
+                    <div className="flex justify-between">
+                        <div className="flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+
+                            <p>Rock</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+
+                    </div>
+                </div>
+            </Popup>
 
             <div className="flex flex-col">
                 <div className="w-80 h-36 border border-gray-500 rounded-[13px] flex flex-col">

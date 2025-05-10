@@ -29,7 +29,7 @@ export default async function Dashboard() {
           </div>
 
           {/* Right Section - Fixed */}
-          <div className="col-span-3 bg-black overflow-hidden border-r border-gray-500">
+          <div className="col-span-3 bg-black overflow-hidden ">
             <RightSidebar />
           </div>
 
